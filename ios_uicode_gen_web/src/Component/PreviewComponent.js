@@ -8,7 +8,9 @@ class PreviewComponent extends Component {
         <h1>预览</h1>
         <div>
           <UIButton basicOptions={this.props.basicOptions} />
-          <h5>{JSON.stringify(this.props)}</h5>
+          <div style={{ wordWrap: 'break-word' }}>
+            {JSON.stringify(this.props)}
+          </div>
         </div>
       </div>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { Layout } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import './App.css'
 import EditComponent from './Component/EditComponent'
 import PreviewComponent from './Component/PreviewComponent'
@@ -10,6 +10,8 @@ const { Header, Footer, Content, Sider } = Layout
 const persistedState = {
   selectedView: '',
   basicOptions: {
+    name: '',
+    superName: 'self.view',
     backgroundColor: '',
     borderWidth: 0,
     borderColor: '',
@@ -21,7 +23,7 @@ const reducer = (state = persistedState, action) => {
   console.log('action:' + JSON.stringify(action))
   switch (action.type) {
     case 'UpdateView':
-      return { ...state, selectedView: action.value }
+      return { ...state, selectedView: action.value, basicOptions: { ...state.basicOptions, name: action.value.toLowerCase() } }
     case 'UpdateBasic':
       return { ...state, basicOptions: action.value }
     default:
@@ -58,12 +60,14 @@ class AppFrame extends Component {
 
           </Header>
           <Content className={'content'} >
-            <div className={'area'}>
-              <EditComponent />
-            </div>
-            <div className={'area'}>
-              <PreviewComponent />
-            </div>
+            <Row style={{ height: '100%' }}>
+              <Col className={'area'} span={12} style={{ height: '100%' }}>
+                <EditComponent />
+              </Col>
+              <Col className={'area'} span={12}>
+                <PreviewComponent />
+              </Col>
+            </Row>
           </Content>
           <Footer>@Realank</Footer>
         </Layout>

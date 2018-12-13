@@ -52,7 +52,7 @@ class ColorPicker extends Component {
         onFocus={this.fetchData}
         onSearch={this.fetchData}
         onChange={this.handleChange}
-        style={{ width: '160px' }}
+        style={{ width: '100%' }}
       >
         {data.map((d) => {
           return (<Option key={d.value} >

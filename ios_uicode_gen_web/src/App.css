@@ -1,0 +1,59 @@
+
+.navigator  h2 ,.navigator > h4 {
+  display: inline-block;
+}
+
+.navigator > h2 {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.navigator > h4 {
+  color: #bbb;
+}
+
+.content {
+  display: flex;
+  background-color: #bbbbbb;
+}
+
+
+.area {
+  padding: 10px;
+  background-color: white;
+  flex: auto;
+  width: 100%;
+}
+
+.area:first-child {
+  margin-right: 5px;
+}
+
+.config {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: #bbbbbb 1px solid;
+}
+
+.config h5 {
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.config .row {
+  height: 44px;
+
+}
+
+.UIButton {
+  /*border: gray 1px solid;*/
+  /*border-radius: 5px;*/
+  border-color: rgba(240, 240, 240, 0);
+  padding: 2px;
+  display: inline-block;
+  color: #307CFF;
+  font-size: 15px;
+  /*width: 46px;*/
+  /*height: 30px;*/
+}

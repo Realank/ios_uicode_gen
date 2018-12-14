@@ -55,6 +55,7 @@ function genConstraintCode (type, varName, superName, constraintOptions) {
     if (offset) {
       code += `.offset(RELATIVEVALUE(${offset}))`
     }
+    code += ';'
     return code
   }
   code += '\n'

@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SourceCodeComponent.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SourceCodeComponent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Component/SourceCodeComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
+            <state relative-caret-position="228">
+              <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -80,14 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PreviewComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Component/PreviewComponent.js">
+      <file leaf-file-name="CodeGenerator.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CodeGen/CodeGenerator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="357">
+              <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -148,7 +145,6 @@
         <option value="$PROJECT_DIR$/src/SimulateUI/UIButton.js" />
         <option value="$PROJECT_DIR$/src/Widget/ColorPicker.js" />
         <option value="$PROJECT_DIR$/src/Part/ConstraintConfigPart.js" />
-        <option value="$PROJECT_DIR$/src/CodeGen/CodeGenerator.js" />
         <option value="$PROJECT_DIR$/src/Component/EditComponent.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/SimulateUI/UIView.js" />
@@ -157,6 +153,7 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/Component/SourceCodeComponent.js" />
+        <option value="$PROJECT_DIR$/src/CodeGen/CodeGenerator.js" />
       </list>
     </option>
   </component>
@@ -201,41 +198,6 @@
             <path>
               <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
               <item name="ios_uicode_gen_web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ios_uicode_gen_web" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ios_uicode_gen_web" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="react-syntax-highlighter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ios_uicode_gen_web" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="react-syntax-highlighter" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ios_uicode_gen_web" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="react-syntax-highlighter" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="languages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ios_uicode_gen_web" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="react-syntax-highlighter" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="languages" type="462c0819:PsiDirectoryNode" />
-              <item name="hljs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ios_uicode_gen_web" type="b2602c69:ProjectViewProjectNode" />
@@ -345,12 +307,12 @@
       <option name="presentableId" value="Default" />
       <updated>1544664979113</updated>
       <workItem from="1544664981560" duration="42205000" />
-      <workItem from="1544769175967" duration="7042000" />
+      <workItem from="1544769175967" duration="7651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49247000" />
+    <option name="totallyTimeSpent" value="49856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
@@ -547,13 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeGen/CodeGenerator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1688">
-          <caret line="165" column="1" lean-forward="true" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Part/BasicConfigPart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
@@ -667,11 +622,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Component/SourceCodeComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
+        <state relative-caret-position="228">
+          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CodeGen/CodeGenerator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
         </state>
       </provider>
     </entry>

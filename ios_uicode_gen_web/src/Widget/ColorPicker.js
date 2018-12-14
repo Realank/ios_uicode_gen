@@ -4,9 +4,13 @@ import { Select, Row } from 'antd'
 const Option = Select.Option
 
 class ColorPicker extends Component {
-  state = {
-    data: [],
-    value: []
+  constructor (props) {
+    console.log('constructor color picker ' + JSON.stringify(props))
+    super(props)
+    this.state = {
+      data: []
+      // value: this.props.initialValue ? this.props.initialValue : []
+    }
   }
 
   fetchData = (value) => {
@@ -22,7 +26,7 @@ class ColorPicker extends Component {
       { value: '#666666', text: '深灰(#666666)' },
       { value: '#333333', text: '深黑(#333333)' }
     )
-    this.setState({ value: this.state.value, data: datas })
+    this.setState({ data: datas })
   }
 
   handleChange = (value) => {
@@ -37,13 +41,14 @@ class ColorPicker extends Component {
   }
 
   render () {
-    const { data, value } = this.state
+    const { data } = this.state
+    console.log('render color picker ' + JSON.stringify(this.state))
     return (
       <Select
         // mode='multiple'
         // labelInValue
         showSearch
-        value={value}
+        value={this.props.initialValue}
         placeholder='颜色'
         notFoundContent={null}
         filterOption={false}

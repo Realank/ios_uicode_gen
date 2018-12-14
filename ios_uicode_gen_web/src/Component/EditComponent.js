@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Select, InputNumber, Row, Col, Input } from 'antd'
-import ColorPicker from '../Widget/ColorPicker'
+import { Select, Row } from 'antd'
+import BasicConfigPart from '../Part/BasicConfigPart'
+import ButtonConfigPart from '../Part/ButtonConfigPart'
+import ConstraintConfigPart from '../Part/ConstraintConfigPart'
 const Option = Select.Option
 
 class EditComponent extends Component {
@@ -10,38 +12,15 @@ class EditComponent extends Component {
     this.props.updateView(value)
   }
 
-  handleNameChange = (e) => {
-    console.log('handleNameChange ' + e.target.value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, name: e.target.value })
-  }
-
-  handleSuperNameChange = (e) => {
-    console.log('handleSuperNameChange ' + e.target.value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, superName: e.target.value })
-  }
-
-  handleBackgroundColorChange = (value) => {
-    console.log('handleBackgroundColorChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, backgroundColor: value })
-  }
-
-  handleBorderWidthChange = (value) => {
-    console.log('handleBorderWidthChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, borderWidth: value })
-  }
-
-  handleBorderColorChange = (value) => {
-    console.log('handleBorderColorChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, borderColor: value })
-  }
-
-  handleBorderRadiusChange = (value) => {
-    console.log('handleBorderRadiusChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, borderRadius: value })
-  }
-
   render () {
     console.log('render ' + JSON.stringify(this.props))
+    let parts = []
+    if (this.props.selectedView && this.props.selectedView.length) {
+      parts.push(<BasicConfigPart />, <ConstraintConfigPart />)
+    }
+    if (this.props.selectedView === 'UIButton') {
+      parts.splice(1, 0, <ButtonConfigPart />)// 插入
+    }
     return (
       <div>
         <h1>编辑</h1>
@@ -59,70 +38,14 @@ class EditComponent extends Component {
             <Option value='UIImageView'>UIImageView</Option>
           </Select>
         </Row>
-        <div className={'config'}>
-          <h3>通用配置</h3>
-          <Row className={'row'} type='flex' align={'middle'}>
-            <Col span={4}>
-              <h5>变量名</h5>
-            </Col>
-            <Col span={6}>
-              <Input placeholder='变量名' onChange={this.handleNameChange} value={this.props.basicOptions.name} />
-            </Col >
-            <Col span={1} />
-            <Col span={4}>
-              <h5>父视图名称</h5>
-            </Col>
-            <Col span={6}>
-              <Input placeholder='变量名' onChange={this.handleSuperNameChange} value={this.props.basicOptions.superName} />
-            </Col >
-          </Row>
-          <Row className={'row'} type='flex' align={'middle'}>
-            <Col span={4}>
-              <h5>背景颜色</h5>
-            </Col>
-            <Col span={8}>
-              <ColorPicker onChange={this.handleBackgroundColorChange} />
-            </Col >
-
-          </Row>
-
-          <Row className={'row'} type='flex' align={'middle'}>
-            <Col span={4}>
-              <h5>边框宽度</h5>
-            </Col>
-            <Col span={5}>
-              <InputNumber min={0} max={30} defaultValue={0} onChange={this.handleBorderWidthChange} />
-            </Col >
-            <Col span={2} />
-            <Col span={4}>
-              <h5>边框颜色</h5>
-            </Col>
-            <Col span={8}>
-              <ColorPicker onChange={this.handleBorderColorChange} />
-            </Col >
-
-          </Row>
-
-          <Row className={'row'} type='flex' align={'middle'}>
-            <Col span={4}>
-              <h5>圆角半径</h5>
-            </Col>
-            <Col span={8}>
-              <InputNumber min={0} max={30} defaultValue={0} onChange={this.handleBorderRadiusChange} />
-            </Col >
-            <Col span={8} />
-
-          </Row>
-
-        </div>
-
+        {parts}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return state
+  return { selectedView: state.selectedView }
 }
 
 const mapDispatchToProps = {

@@ -3,11 +3,15 @@ import { connect } from 'react-redux'
 import UIButton from '../SimulateUI/UIButton'
 class PreviewComponent extends Component {
   render () {
+    let widget = null
+    if (this.props.selectedView === 'UIButton') {
+      widget = <UIButton basicOptions={this.props.basicOptions} />
+    }
     return (
-      <div>
+      <div className={'preview'}>
         <h1>预览</h1>
-        <div>
-          <UIButton basicOptions={this.props.basicOptions} />
+        <div className={'renderPreview'}>
+          {widget}
           <div style={{ wordWrap: 'break-word' }}>
             {JSON.stringify(this.props)}
           </div>

@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { Layout, Row, Col } from 'antd'
+import { Layout } from 'antd'
 import './App.css'
 import EditComponent from './Component/EditComponent'
 import PreviewComponent from './Component/PreviewComponent'
+import SourceCodeComponent from './Component/SourceCodeComponent'
 const { Header, Footer, Content, Sider } = Layout
 
 const persistedState = {
   selectedView: '',
   basicOptions: {
-    name: '',
-    superName: 'self.view',
-    backgroundColor: '',
-    borderWidth: 0,
-    borderColor: '',
-    borderRadius: 0
+    // name: '',
+    superName: 'view'
+    // backgroundColor: '',
+    // borderWidth: 0,
+    // borderColor: '',
+    // borderRadius: 0
+  },
+  buttonOptions: {
+    title: 'button'
+  },
+  constraintOptions: {
+    selfWidth: 50,
+    selfHeight: 30
   }
 }
 
@@ -23,9 +31,13 @@ const reducer = (state = persistedState, action) => {
   console.log('action:' + JSON.stringify(action))
   switch (action.type) {
     case 'UpdateView':
-      return { ...state, selectedView: action.value, basicOptions: { ...state.basicOptions, name: action.value.toLowerCase() } }
+      return { ...persistedState, selectedView: action.value, basicOptions: { ...persistedState.basicOptions, name: action.value.toLowerCase() } }
     case 'UpdateBasic':
       return { ...state, basicOptions: action.value }
+    case 'UpdateButton':
+      return { ...state, buttonOptions: action.value }
+    case 'UpdateConstraint':
+      return { ...state, constraintOptions: action.value }
     default:
       return state
   }
@@ -49,9 +61,9 @@ class App extends Component {
 class AppFrame extends Component {
   render () {
     return (
-      <Layout style={{ height: '100%', width: '100%', position: 'absolute' }}>
+      <Layout style={{ minHeight: '100%', width: '100%', position: 'absolute' }}>
 
-        <Sider width={'8%'} />
+        <Sider width={'5%'} />
 
         <Layout >
           <Header className='navigator' style={{ padding: '0' }}>
@@ -60,19 +72,19 @@ class AppFrame extends Component {
 
           </Header>
           <Content className={'content'} >
-            <Row style={{ height: '100%' }}>
-              <Col className={'area'} span={12} style={{ height: '100%' }}>
-                <EditComponent />
-              </Col>
-              <Col className={'area'} span={12}>
-                <PreviewComponent />
-              </Col>
-            </Row>
+
+            <div className={'area'}>
+              <EditComponent />
+            </div>
+            <div className={'area'}>
+              <PreviewComponent />
+              <SourceCodeComponent />
+            </div>
           </Content>
           <Footer>@Realank</Footer>
         </Layout>
 
-        <Sider width={'8%'} />
+        <Sider width={'5%'} />
 
       </Layout>
     )

@@ -13,15 +13,16 @@
 }
 
 .content {
-
+  display: flex;
   background-color: #bbbbbb;
 }
 
 
 .area {
+  width: 50%;
   padding: 10px;
   background-color: white;
-
+  box-sizing:border-box;
 }
 
 .area:first-child {
@@ -45,6 +46,10 @@
 
 }
 
+.config > h4 {
+  color: #666666;
+}
+
 .UIButton {
 
   border-color: rgba(240, 240, 240, 0);
@@ -53,4 +58,10 @@
   color: #307CFF;
   font-size: 15px;
 
+}
+
+.preview {
+  border-bottom: gray 1px solid;
+  margin-bottom: 10px;
+  min-height: 30%;
 }

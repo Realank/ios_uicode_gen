@@ -4,6 +4,7 @@ class UIButton extends Component {
   render () {
     const basicOptions = this.props.basicOptions
     const buttonOptions = this.props.buttonOptions
+    const constraintOptions = this.props.constraintOptions
     let style = {
       backgroundColor: basicOptions.backgroundColor,
       borderWidth: basicOptions.borderWidth + 'px',
@@ -13,6 +14,12 @@ class UIButton extends Component {
     }
     if (buttonOptions.titleColor) {
       style.color = buttonOptions.titleColor
+    }
+    if (constraintOptions.checkSelfWidth && constraintOptions.selfWidth > 0) {
+      style.width = constraintOptions.selfWidth
+    }
+    if (constraintOptions.checkSelfHeight && constraintOptions.selfHeight > 0) {
+      style.height = constraintOptions.selfHeight
     }
 
     return (

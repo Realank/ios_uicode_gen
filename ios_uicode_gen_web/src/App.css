@@ -51,25 +51,31 @@
 }
 
 .UIButton {
-
+  width: 100px;
+  height: 80px;
   padding: 2px;
-  display: inline-block;
   color: #307CFF;
   font-size: 15px;
   border: transparent 0 none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .UIView {
   width: 100px;
   height: 80px;
   border: transparent 0 none;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .preview {
   border-bottom: gray 1px solid;
   margin-bottom: 10px;
   min-height: 30%;
+  text-align: center;
 }
 
 .codeShow {

@@ -52,18 +52,17 @@
 
 .UIButton {
 
-  border-color: rgba(240, 240, 240, 0);
   padding: 2px;
   display: inline-block;
   color: #307CFF;
   font-size: 15px;
-
+  border: transparent 0 none;
 }
 
 .UIView {
   width: 100px;
   height: 80px;
-  border-color: transparent;
+  border: transparent 0 none;
   text-align: center;
 }
 

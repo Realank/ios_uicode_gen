@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import objectivec from 'react-syntax-highlighter/dist/languages/hljs/objectivec'
 import { github } from 'react-syntax-highlighter/dist/styles/hljs'
 import { connect } from 'react-redux'
 import { genButtonCode, genCustomViewCode } from '../CodeGen/CodeGenerator'
 class SourceCodeComponent extends Component {
+  constructor (props) {
+    super(props)
+    SyntaxHighlighter.registerLanguage('objectivec', objectivec)
+  }
   render () {
     let codeString = ''
     switch (this.props.selectedView) {

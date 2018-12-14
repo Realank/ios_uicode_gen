@@ -3,6 +3,14 @@ import { connect } from 'react-redux'
 import { InputNumber, Row, Col, Checkbox } from 'antd'
 
 class ConstraintConfigPart extends Component {
+  handleSelfWidthCheckChange = (e) => {
+    console.log('handleSelfWidthCheckChange ' + e.target.checked)
+    this.props.updateConstraintOptions({ ...this.props.constraintOptions, checkSelfWidth: e.target.checked })
+  }
+  handleSelfHeightCheckChange = (e) => {
+    console.log('handleSelfHeightCheckChange ' + e.target.checked)
+    this.props.updateConstraintOptions({ ...this.props.constraintOptions, checkSelfHeight: e.target.checked })
+  }
   handleSelfWidthChange = (value) => {
     console.log('handleSelfWidthChange ' + value)
     this.props.updateConstraintOptions({ ...this.props.constraintOptions, selfWidth: value })
@@ -80,17 +88,36 @@ class ConstraintConfigPart extends Component {
         <h3>约束配置</h3>
         <h4>自我约束</h4>
         <Row className={'row'} type='flex' align={'middle'}>
-          <Col span={4}>
+          <Col>
+            <Checkbox checked={this.props.constraintOptions.checkSelfWidth} onChange={this.handleSelfWidthCheckChange} />
+          </Col>
+
+          <Col offset={1}>
             <h5>宽度</h5>
           </Col>
-          <Col span={5}>
-            <InputNumber min={0} max={300} defaultValue={this.props.constraintOptions.selfWidth} onChange={this.handleSelfWidthChange} />
+          <Col offset={1}>
+            <InputNumber
+              min={0}
+              max={300}
+              defaultValue={this.props.constraintOptions.selfWidth}
+              onChange={this.handleSelfWidthChange}
+              disabled={!this.props.constraintOptions.checkSelfWidth} />
           </Col >
-          <Col span={4}>
+        </Row>
+        <Row className={'row'} type='flex' align={'middle'}>
+          <Col>
+            <Checkbox checked={this.props.constraintOptions.checkSelfHeight} onChange={this.handleSelfHeightCheckChange} />
+          </Col>
+          <Col offset={1}>
             <h5>高度</h5>
           </Col>
-          <Col span={5}>
-            <InputNumber min={0} max={300} defaultValue={this.props.constraintOptions.selfHeight} onChange={this.handleSelfHeightChange} />
+          <Col offset={1}>
+            <InputNumber
+              min={0}
+              max={300}
+              defaultValue={this.props.constraintOptions.selfHeight}
+              onChange={this.handleSelfHeightChange}
+              disabled={!this.props.constraintOptions.checkSelfHeight} />
           </Col >
         </Row>
 

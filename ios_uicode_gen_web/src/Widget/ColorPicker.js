@@ -24,7 +24,8 @@ class ColorPicker extends Component {
       { value: '#FFFFFF', text: '白色(#FFFFFF)' },
       { value: '#999999', text: '浅灰(#999999)' },
       { value: '#666666', text: '深灰(#666666)' },
-      { value: '#333333', text: '深黑(#333333)' }
+      { value: '#333333', text: '深黑(#333333)' },
+      { value: '#307CFF', text: '蓝色(#307CFF)' }
     )
     this.setState({ data: datas })
   }

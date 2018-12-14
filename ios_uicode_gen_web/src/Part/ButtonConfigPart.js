@@ -41,7 +41,7 @@ class ButtonConfigPart extends Component {
             <h5>标题颜色</h5>
           </Col>
           <Col span={8}>
-            <ColorPicker onChange={this.handleTitleColorChange} />
+            <ColorPicker initialValue={this.props.buttonOptions.titleColor} onChange={this.handleTitleColorChange} />
           </Col >
 
         </Row>

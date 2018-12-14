@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 
-class UIButton extends Component {
+class UIView extends Component {
   render () {
     const basicOptions = this.props.basicOptions
-    const buttonOptions = this.props.buttonOptions
     let style = {
       backgroundColor: basicOptions.backgroundColor,
       borderWidth: basicOptions.borderWidth + 'px',
@@ -11,14 +10,11 @@ class UIButton extends Component {
       borderStyle: 'solid',
       borderRadius: basicOptions.borderRadius + 'px'
     }
-    if (buttonOptions.titleColor) {
-      style.color = buttonOptions.titleColor
-    }
 
     return (
-      <div className={'UIButton'} style={style}>Button</div>
+      <div className={'UIView'} style={style} >view</div>
     )
   }
 }
 
-export default UIButton
+export default UIView

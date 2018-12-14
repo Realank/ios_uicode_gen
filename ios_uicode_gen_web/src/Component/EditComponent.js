@@ -16,10 +16,10 @@ class EditComponent extends Component {
     console.log('render ' + JSON.stringify(this.props))
     let parts = []
     if (this.props.selectedView && this.props.selectedView.length) {
-      parts.push(<BasicConfigPart />, <ConstraintConfigPart />)
+      parts.push(<BasicConfigPart key={'BasicConfigPart'} />, <ConstraintConfigPart key={'ConstraintConfigPart'} />)
     }
     if (this.props.selectedView === 'UIButton') {
-      parts.splice(1, 0, <ButtonConfigPart />)// 插入
+      parts.splice(1, 0, <ButtonConfigPart key={'ButtonConfigPart'} />)// 插入
     }
     return (
       <div>
@@ -27,6 +27,7 @@ class EditComponent extends Component {
         <Row className={'row'} type='flex' align={'middle'}>
           <Select
             showSearch
+            value={this.props.selectedView.length ? this.props.selectedView : undefined}
             style={{ width: 200 }}
             placeholder='选择一个控件'
             optionFilterProp='children'
@@ -35,7 +36,7 @@ class EditComponent extends Component {
           >
             <Option value='UIView'>UIView</Option>
             <Option value='UIButton'>UIButton</Option>
-            <Option value='UIImageView'>UIImageView</Option>
+            {/* <Option value='UIImageView'>UIImageView</Option> */}
           </Select>
         </Row>
         {parts}

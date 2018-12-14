@@ -1,19 +1,34 @@
 import React, { Component } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { hybrid } from 'react-syntax-highlighter/dist/styles/hljs'
-
+import { github } from 'react-syntax-highlighter/dist/styles/hljs'
+import { connect } from 'react-redux'
+import { genButtonCode, genCustomViewCode } from '../CodeGen/CodeGenerator'
 class SourceCodeComponent extends Component {
   render () {
-    const codeString = 'NSLog(@"hello world");\nNSString *a = @"safhadsofnasdo";'
+    let codeString = ''
+    switch (this.props.selectedView) {
+      case 'UIView':
+        codeString = genCustomViewCode(this.props.selectedView, this.props.basicOptions, this.props.constraintOptions)
+        break
+      case 'UIButton':
+        codeString = genButtonCode(this.props.selectedView, this.props.basicOptions, this.props.buttonOptions, this.props.constraintOptions)
+        break
+      case 'UIImageView':
+        break
+    }
 
     return (
-      <div>
+      <div className={'codeShow'}>
         <h1>源码</h1>
-        <SyntaxHighlighter language='objectivec' style={hybrid} showLineNumbers >{codeString}</SyntaxHighlighter>
+        <SyntaxHighlighter className={'sourceCode'} language='objectivec' style={github} showLineNumbers wrapLines>{codeString}</SyntaxHighlighter>
       </div>
 
     )
   }
 }
 
-export default SourceCodeComponent
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(SourceCodeComponent)

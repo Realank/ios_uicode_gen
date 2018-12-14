@@ -60,8 +60,28 @@
 
 }
 
+.UIView {
+  width: 100px;
+  height: 80px;
+  border-color: transparent;
+  text-align: center;
+}
+
 .preview {
   border-bottom: gray 1px solid;
   margin-bottom: 10px;
   min-height: 30%;
+}
+
+.codeShow {
+  position: relative;
+  height: 70%;
+}
+
+.sourceCode {
+  position: absolute;
+  top: 50px;
+  bottom: 20px;
+  left: 10px;
+  right: 10px;
 }

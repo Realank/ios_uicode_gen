@@ -69,7 +69,7 @@ class BasicConfigPart extends Component {
             <h5>边框宽度</h5>
           </Col>
           <Col span={5}>
-            <InputNumber min={0} max={30} value={this.props.basicOptions.borderWidth ? this.props.basicOptions.borderWidth : 0} onChange={this.handleBorderWidthChange} />
+            <InputNumber min={0} max={30} precision={1} step={0.5} value={this.props.basicOptions.borderWidth ? this.props.basicOptions.borderWidth : 0} onChange={this.handleBorderWidthChange} />
           </Col >
           <Col span={2} />
           <Col span={4}>

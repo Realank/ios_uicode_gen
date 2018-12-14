@@ -81,7 +81,7 @@ class AppFrame extends Component {
               <SourceCodeComponent />
             </div>
           </Content>
-          <Footer>@Realank</Footer>
+          <Footer>© Realank</Footer>
         </Layout>
 
         <Sider width={'5%'} />

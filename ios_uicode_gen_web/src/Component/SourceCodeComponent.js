@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import objectivec from 'react-syntax-highlighter/dist/languages/hljs/objectivec'
-import { github } from 'react-syntax-highlighter/dist/styles/hljs'
+import github from 'react-syntax-highlighter/dist/styles/hljs/github'
 import { connect } from 'react-redux'
 import { Switch, Row } from 'antd'
 import { genButtonCode, genCustomViewCode, genImageViewCode } from '../CodeGen/CodeGenerator'

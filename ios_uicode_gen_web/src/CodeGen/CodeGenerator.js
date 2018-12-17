@@ -77,6 +77,12 @@ function genConstraintCode (type, varName, superName, constraintOptions) {
   if (constraintOptions.checkSuperCenterY) {
     code += genPositionConstraints('centerY', constraintOptions.superCenterYOffset)
   }
+  if (constraintOptions.checkSuperEqualWidth) {
+    code += genPositionConstraints('width', constraintOptions.superEqualWidthOffset)
+  }
+  if (constraintOptions.checkSuperEqualHeight) {
+    code += genPositionConstraints('height', constraintOptions.superEqualHeightOffset)
+  }
 
   code +=
     `

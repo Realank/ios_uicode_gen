@@ -81,6 +81,26 @@ class ConstraintConfigPart extends Component {
     this.props.updateConstraintOptions({ ...this.props.constraintOptions, superCenterYOffset: value })
   }
 
+  handleSuperEqualWidthCheckChange = (e) => {
+    console.log('handleSuperEqualWidthCheckChange ' + e.target.checked)
+    this.props.updateConstraintOptions({ ...this.props.constraintOptions, checkSuperEqualWidth: e.target.checked })
+  }
+
+  handleSuperEqualWidthOffsetChange = (value) => {
+    console.log('handleSuperEqualWidthOffsetChange ' + value)
+    this.props.updateConstraintOptions({ ...this.props.constraintOptions, superEqualWidthOffset: value })
+  }
+
+  handleSuperEqualHeightCheckChange = (e) => {
+    console.log('handleSuperEqualHeightCheckChange ' + e.target.checked)
+    this.props.updateConstraintOptions({ ...this.props.constraintOptions, checkSuperEqualHeight: e.target.checked })
+  }
+
+  handleSuperEqualHeightOffsetChange = (value) => {
+    console.log('handleSuperEqualHeightOffsetChange ' + value)
+    this.props.updateConstraintOptions({ ...this.props.constraintOptions, superEqualHeightOffset: value })
+  }
+
   render () {
     return (
 
@@ -215,6 +235,38 @@ class ConstraintConfigPart extends Component {
           </Col>
           <Col span={7}>
             <InputNumber min={-300} max={300} defaultValue={0} onChange={this.handleSuperCenterYOffsetChange} disabled={!this.props.constraintOptions.checkSuperCenterY} />
+          </Col >
+        </Row>
+
+        <Row className={'row'} type='flex' align={'middle'}>
+          <Col>
+            <Checkbox checked={this.props.constraintOptions.checkSuperEqualWidth} onChange={this.handleSuperEqualWidthCheckChange} />
+          </Col>
+
+          <Col offset={1}>
+            <h5>等&emsp;&emsp;宽</h5>
+          </Col>
+          <Col offset={1}>
+            <h5>偏移</h5>
+          </Col>
+          <Col span={7}>
+            <InputNumber min={-300} max={300} defaultValue={0} onChange={this.handleSuperEqualWidthOffsetChange} disabled={!this.props.constraintOptions.checkSuperEqualWidth} />
+          </Col >
+        </Row>
+
+        <Row className={'row'} type='flex' align={'middle'}>
+          <Col>
+            <Checkbox checked={this.props.constraintOptions.checkSuperEqualHeight} onChange={this.handleSuperEqualHeightCheckChange} />
+          </Col>
+
+          <Col offset={1}>
+            <h5>等&emsp;&emsp;高</h5>
+          </Col>
+          <Col offset={1}>
+            <h5>偏移</h5>
+          </Col>
+          <Col span={7}>
+            <InputNumber min={-300} max={300} defaultValue={0} onChange={this.handleSuperEqualHeightOffsetChange} disabled={!this.props.constraintOptions.checkSuperEqualHeight} />
           </Col >
         </Row>
 

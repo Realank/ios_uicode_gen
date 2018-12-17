@@ -18,7 +18,7 @@ class UIView extends Component {
       style.height = constraintOptions.selfHeight
     }
     return (
-      <div className={'UIView'} style={style} >view</div>
+      <div className={'UIView'} style={style} >{this.props.name ? this.props.name : 'View'}</div>
     )
   }
 }

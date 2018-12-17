@@ -6,27 +6,27 @@ function convertColor (color) {
   return color.replace('#', '0x')
 }
 
-function genBasicCode (varName, basicOptions) {
+function genBasicCode (indent, varName, basicOptions) {
   let code = ''
   if (validString(basicOptions.backgroundColor)) {
     code +=
       `
-    ${varName}.backgroundColor = UIColorFromRGB(${convertColor(basicOptions.backgroundColor)});`
+    ${indent}${varName}.backgroundColor = UIColorFromRGB(${convertColor(basicOptions.backgroundColor)});`
   }
   if (basicOptions.borderWidth > 0) {
     code +=
       `
-    ${varName}.layer.borderWidth = RELATIVEVALUE(${basicOptions.borderWidth});`
+    ${indent}${varName}.layer.borderWidth = RELATIVEVALUE(${basicOptions.borderWidth});`
   }
   if (validString(basicOptions.borderColor)) {
     code +=
       `
-    ${varName}.layer.borderColor = UIColorFromRGB(${convertColor(basicOptions.borderColor)}).CGColor;`
+    ${indent}${varName}.layer.borderColor = UIColorFromRGB(${convertColor(basicOptions.borderColor)}).CGColor;`
   }
   if (basicOptions.borderRadius > 0) {
     code +=
       `
-    ${varName}.layer.cornerRadius = RELATIVEVALUE(${basicOptions.borderRadius});`
+    ${indent}${varName}.layer.cornerRadius = RELATIVEVALUE(${basicOptions.borderRadius});`
   }
   return code
 }
@@ -85,85 +85,141 @@ function genConstraintCode (type, varName, superName, constraintOptions) {
   return code
 }
 
-function genButtonCode (viewClass, basicOptions, buttonOptions, constraintOptions) {
+function genCreateMethodHeader (widgetType, viewClass, name, activeLoad) {
+  let code = `@property (nonatomic, strong) ${viewClass} *${name};\n\n`
+  if (activeLoad) {
+    code += `- (void)create${widgetType} {`
+  } else {
+    code += `- (${viewClass} *)${name}() {
+    if (!_${name}) {`
+  }
+  return code
+}
+
+function genCreateMethodTail (superName, localVarName, propertyName, activeLoad) {
+  let code = '\n'
+  if (activeLoad) {
+    code += `
+    [self.${superName} addSubview:${localVarName}];
+    _${propertyName} = ${localVarName};
+}`
+  } else {
+    code += `
+        _${propertyName} = ${localVarName};
+    }
+    return _${propertyName};
+}`
+  }
+  return code
+}
+
+function genCustomViewCode (viewClass, basicOptions, constraintOptions, activeLoad) {
   // method body and init method
-  let code =
-    `- (void)createButton {
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];`
+  const localVarName = 'view'
+  const widgetType = 'CustomView'
+  const propertyName = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
+  const superName = validString(basicOptions.superName) ? basicOptions.superName : 'view'
+  let indent = activeLoad ? '' : '    '
+  let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
+
+  code += `
+    ${indent}UIView* ${localVarName} = [[UIView alloc] initWithFrame:CGRectZero];`
+
   // basic code
-  code += genBasicCode('button', basicOptions)
+  code += genBasicCode(indent, localVarName, basicOptions)
+
+  // tail code
+  code += genCreateMethodTail(superName, localVarName, propertyName, activeLoad)
+
+  // constraint code
+  code += '\n\n'
+  code += genConstraintCode(widgetType, propertyName, superName, constraintOptions)
+
+  return code
+}
+
+function genButtonCode (viewClass, basicOptions, buttonOptions, constraintOptions, activeLoad) {
+  // method body and init method
+  const localVarName = 'button'
+  const widgetType = 'Button'
+  const propertyName = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
+  const superName = validString(basicOptions.superName) ? basicOptions.superName : 'view'
+  let indent = activeLoad ? '' : '    '
+  let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
+
+  code += `
+    ${indent}UIButton* ${localVarName} = [UIButton buttonWithType:UIButtonTypeCustom];`
+
+  // basic code
+  code += genBasicCode(indent, localVarName, basicOptions)
 
   // unique code
   code += '\n'
   if (validString(buttonOptions.title)) {
     code +=
       `
-    [button setTitle:@"${buttonOptions.title}" forState:UIControlStateNormal];`
+    ${indent}[${localVarName} setTitle:@"${buttonOptions.title}" forState:UIControlStateNormal];`
   }
   if (validString(buttonOptions.titleColor)) {
     code +=
       `
-    [button setTitleColor:UIColorFromRGB(${convertColor(buttonOptions.titleColor)}) forState:UIControlStateNormal];`
+    ${indent}[${localVarName} setTitleColor:UIColorFromRGB(${convertColor(buttonOptions.titleColor)}) forState:UIControlStateNormal];`
   }
   if (validString(buttonOptions.image)) {
     code +=
       `
-    UIImage *image = [UIImage imageNamed:@"${buttonOptions.image}"];
-    [button setImage:image forState:UIControlStateNormal];`
+    ${indent}UIImage *image = [UIImage imageNamed:@"${buttonOptions.image}"];
+    ${indent}[${localVarName} setImage:image forState:UIControlStateNormal];`
   }
   if (validString(buttonOptions.title) && validString(buttonOptions.image)) {
     code +=
       `
-    //[button setImageEdgeInsets:UIEdgeInsetsMake(0, -7, 0, 0)];
-    //[button setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -7)];`
+    ${indent}//[${localVarName} setImageEdgeInsets:UIEdgeInsetsMake(0, -7, 0, 0)];
+    ${indent}//[${localVarName} setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -7)];`
   }
   if (validString(buttonOptions.backgroundImage)) {
     code +=
       `
-    UIImage *bgImage = [UIImage imageNamed:@"${buttonOptions.backgroundImage}"];
-    [button setBackgroundImage:bgImage forState:UIControlStateNormal];`
+    ${indent}UIImage *bgImage = [UIImage imageNamed:@"${buttonOptions.backgroundImage}"];
+    ${indent}[${localVarName} setBackgroundImage:bgImage forState:UIControlStateNormal];`
   }
 
   // tail code
-  code += '\n'
-
-  const name = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
-  const superName = validString(basicOptions.superName) ? basicOptions.superName : 'view'
-  code += `
-    [self.${superName} addSubview:button];
-    _${name} = button;
-}`
+  code += genCreateMethodTail(superName, localVarName, propertyName, activeLoad)
 
   // constraint code
-  code += '\n'
-  code += genConstraintCode('Button', name, superName, constraintOptions)
+  code += '\n\n'
+  code += genConstraintCode(widgetType, propertyName, superName, constraintOptions)
 
   return code
 }
 
-function genCustomViewCode (viewClass, basicOptions, constraintOptions) {
+function genImageViewCode (viewClass, basicOptions, imageViewOptions, constraintOptions, activeLoad) {
   // method body and init method
-  let code =
-    `- (void)createCustomView {
-    UIView* view = [[UIView alloc] initWithFrame:CGRectZero];`
-  // basic code
-  code += genBasicCode('view', basicOptions)
-
-  // tail code
-  code += '\n'
-
-  const name = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
+  const localVarName = 'imageView'
+  const widgetType = 'ImageView'
+  const propertyName = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
   const superName = validString(basicOptions.superName) ? basicOptions.superName : 'view'
+  let indent = activeLoad ? '' : '    '
+  let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
   code += `
-    [self.${superName} addSubview:view];
-    _${name} = view;
-}`
+    ${indent}UIImageView* ${localVarName} = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"${imageViewOptions.image}"]];`
+  // basic code
+  code += genBasicCode(indent, localVarName, basicOptions)
+  // unique code
+  if (imageViewOptions.hightLightedImage) {
+    code +=
+      `
+    ${indent}${localVarName}.highlightedImage = [UIImage imageNamed:@"${imageViewOptions.hightLightedImage}"];`
+  }
+  // tail code
+  code += genCreateMethodTail(superName, localVarName, propertyName, activeLoad)
 
   // constraint code
-  code += '\n'
-  code += genConstraintCode('CustomView', name, superName, constraintOptions)
+  code += '\n\n'
+  code += genConstraintCode(widgetType, propertyName, superName, constraintOptions)
 
   return code
 }
 
-export { genButtonCode, genCustomViewCode }
+export { genButtonCode, genCustomViewCode, genImageViewCode }

@@ -50,14 +50,14 @@ class ButtonConfigPart extends Component {
             <h5>前景图片</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='变量名' onChange={this.handleImageChange} value={this.props.buttonOptions.image} />
+            <Input placeholder='图片名' onChange={this.handleImageChange} value={this.props.buttonOptions.image} />
           </Col >
           <Col span={1} />
           <Col span={4}>
             <h5>背景图片</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='变量名' onChange={this.handleBackgroundImageChange} value={this.props.buttonOptions.backgroundImage} />
+            <Input placeholder='图片名' onChange={this.handleBackgroundImageChange} value={this.props.buttonOptions.backgroundImage} />
           </Col >
         </Row>
 

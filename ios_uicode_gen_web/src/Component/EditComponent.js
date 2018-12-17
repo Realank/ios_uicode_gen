@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Select, Row } from 'antd'
 import BasicConfigPart from '../Part/BasicConfigPart'
+import ImageViewConfigPart from '../Part/ImageViewConfigPart'
 import ButtonConfigPart from '../Part/ButtonConfigPart'
 import ConstraintConfigPart from '../Part/ConstraintConfigPart'
 const Option = Select.Option
@@ -20,6 +21,8 @@ class EditComponent extends Component {
     }
     if (this.props.selectedView === 'UIButton') {
       parts.splice(1, 0, <ButtonConfigPart key={'ButtonConfigPart'} />)// 插入
+    } else if (this.props.selectedView === 'UIImageView') {
+      parts.splice(1, 0, <ImageViewConfigPart key={'ImageViewConfigPart'} />)// 插入
     }
     return (
       <div>
@@ -36,7 +39,7 @@ class EditComponent extends Component {
           >
             <Option value='UIView'>UIView</Option>
             <Option value='UIButton'>UIButton</Option>
-            {/* <Option value='UIImageView'>UIImageView</Option> */}
+            <Option value='UIImageView'>UIImageView</Option>
           </Select>
         </Row>
         {parts}

@@ -21,10 +21,14 @@ const persistedState = {
   buttonOptions: {
     title: 'button'
   },
+  imageViewOptions: {
+
+  },
   constraintOptions: {
     selfWidth: 50,
     selfHeight: 30
-  }
+  },
+  activeLoadCode: true
 }
 
 const reducer = (state = persistedState, action) => {
@@ -38,6 +42,10 @@ const reducer = (state = persistedState, action) => {
       return { ...state, buttonOptions: action.value }
     case 'UpdateConstraint':
       return { ...state, constraintOptions: action.value }
+    case 'UpdateImageView':
+      return { ...state, imageViewOptions: action.value }
+    case 'UpdateLoadMethod':
+      return { ...state, activeLoadCode: action.value }
     default:
       return state
   }

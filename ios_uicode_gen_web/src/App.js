@@ -35,7 +35,7 @@ const reducer = (state = persistedState, action) => {
   console.log('action:' + JSON.stringify(action))
   switch (action.type) {
     case 'UpdateView':
-      return { ...persistedState, selectedView: action.value, basicOptions: { ...persistedState.basicOptions, name: action.value.toLowerCase() } }
+      return { ...persistedState, selectedView: action.value, basicOptions: { ...persistedState.basicOptions, name: action.value.toLowerCase() }, activeLoadCode: state.activeLoadCode }
     case 'UpdateBasic':
       return { ...state, basicOptions: action.value }
     case 'UpdateButton':

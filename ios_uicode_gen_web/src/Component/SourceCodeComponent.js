@@ -34,7 +34,7 @@ class SourceCodeComponent extends Component {
       <div className={'codeShow'}>
         <Row type='flex' align={'middle'}>
           <h1 style={{ display: 'inline-block', margin: '0' }}>源码</h1>
-          <div style={{ marginLeft: '10px' }}><Switch style={{ width: '80px' }} onChange={this.handleSwitchChange} checkedChildren='主动加载' unCheckedChildren='懒加载' defaultChecked={this.props.activeLoadCode} /></div>
+          <div style={{ marginLeft: '10px' }}><Switch style={{ width: '90px' }} onChange={this.handleSwitchChange} checkedChildren='主动加载' unCheckedChildren='懒加载' defaultChecked={this.props.activeLoadCode} /></div>
         </Row>
 
         <SyntaxHighlighter className={'sourceCode'} language='objectivec' style={github} showLineNumbers wrapLines>{codeString}</SyntaxHighlighter>

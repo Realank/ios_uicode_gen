@@ -19,9 +19,9 @@ class PreviewComponent extends Component {
         <h1>预览</h1>
         <div className={'renderPreview'}>
           {widget}
-          <div style={{ wordWrap: 'break-word' }}>
-            {JSON.stringify(this.props)}
-          </div>
+          {/* <div style={{ wordWrap: 'break-word' }}> */}
+          {/* {JSON.stringify(this.props)} */}
+          {/* </div> */}
         </div>
       </div>
     )

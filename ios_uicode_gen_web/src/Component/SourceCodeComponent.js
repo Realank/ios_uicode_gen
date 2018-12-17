@@ -4,7 +4,7 @@ import objectivec from 'react-syntax-highlighter/dist/languages/hljs/objectivec'
 import github from 'react-syntax-highlighter/dist/styles/hljs/github'
 import { connect } from 'react-redux'
 import { Switch, Row } from 'antd'
-import { genButtonCode, genCustomViewCode, genImageViewCode } from '../CodeGen/CodeGenerator'
+import * as CodeGen from '../CodeGen/CodeGenerator'
 class SourceCodeComponent extends Component {
   constructor (props) {
     super(props)
@@ -18,13 +18,15 @@ class SourceCodeComponent extends Component {
     let codeString = ''
     switch (this.props.selectedView) {
       case 'UIView':
-        codeString = genCustomViewCode(this.props.selectedView, this.props.basicOptions, this.props.constraintOptions, this.props.activeLoadCode)
+        codeString = CodeGen.genCustomViewCode(this.props.selectedView, this.props.basicOptions, this.props.constraintOptions, this.props.activeLoadCode)
         break
       case 'UIButton':
-        codeString = genButtonCode(this.props.selectedView, this.props.basicOptions, this.props.buttonOptions, this.props.constraintOptions, this.props.activeLoadCode)
+        codeString = CodeGen.genButtonCode(this.props.selectedView, this.props.basicOptions, this.props.buttonOptions, this.props.constraintOptions, this.props.activeLoadCode)
         break
       case 'UIImageView':
-        codeString = genImageViewCode(this.props.selectedView, this.props.basicOptions, this.props.imageViewOptions, this.props.constraintOptions, this.props.activeLoadCode)
+        codeString = CodeGen.genImageViewCode(this.props.selectedView, this.props.basicOptions, this.props.imageViewOptions, this.props.constraintOptions, this.props.activeLoadCode)
+      case 'UITableView':
+        codeString = CodeGen.genTableViewCode(this.props.selectedView, this.props.basicOptions, this.props.tableViewOptions, this.props.constraintOptions, this.props.activeLoadCode)
         break
     }
 

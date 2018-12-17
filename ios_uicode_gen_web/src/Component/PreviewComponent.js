@@ -11,6 +11,8 @@ class PreviewComponent extends Component {
       widget = <UIView basicOptions={this.props.basicOptions} constraintOptions={this.props.constraintOptions} />
     } else if (this.props.selectedView === 'UIImageView') {
       widget = <UIView basicOptions={this.props.basicOptions} constraintOptions={this.props.constraintOptions} name={'ImageView'} />
+    } else if (this.props.selectedView === 'UITableView') {
+      widget = <UIView basicOptions={this.props.basicOptions} constraintOptions={this.props.constraintOptions} name={'TableView'} />
     }
     return (
       <div className={'preview'}>

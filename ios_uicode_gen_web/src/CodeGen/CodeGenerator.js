@@ -123,7 +123,7 @@ function genCustomViewCode (viewClass, basicOptions, constraintOptions, activeLo
   let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
 
   code += `
-    ${indent}UIView* ${localVarName} = [[UIView alloc] initWithFrame:CGRectZero];`
+    ${indent}UIView *${localVarName} = [[UIView alloc] initWithFrame:CGRectZero];`
 
   // basic code
   code += genBasicCode(indent, localVarName, basicOptions)
@@ -203,7 +203,7 @@ function genImageViewCode (viewClass, basicOptions, imageViewOptions, constraint
   let indent = activeLoad ? '' : '    '
   let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
   code += `
-    ${indent}UIImageView* ${localVarName} = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"${imageViewOptions.image}"]];`
+    ${indent}UIImageView *${localVarName} = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"${imageViewOptions.image}"]];`
   // basic code
   code += genBasicCode(indent, localVarName, basicOptions)
   // unique code
@@ -222,4 +222,44 @@ function genImageViewCode (viewClass, basicOptions, imageViewOptions, constraint
   return code
 }
 
-export { genButtonCode, genCustomViewCode, genImageViewCode }
+function genTableViewCode (viewClass, basicOptions, tableViewOptions, constraintOptions, activeLoad) {
+  // method body and init method
+  const localVarName = 'tableView'
+  const widgetType = 'TableView'
+  const propertyName = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
+  const superName = validString(basicOptions.superName) ? basicOptions.superName : 'view'
+  let indent = activeLoad ? '' : '    '
+  let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
+
+  code += `
+    ${indent}UITableView *${localVarName} = [[UIView alloc] init];`
+
+  // basic code
+  code += genBasicCode(indent, localVarName, basicOptions)
+
+  // unique code
+  code += '\n'
+  code +=
+    `
+    ${indent}${localVarName}.delegate = self;
+    ${indent}${localVarName}.dataSource = self;
+    ${indent}${localVarName}.separatorStyle = UITableViewCellSeparatorStyleNone;
+    ${indent}${localVarName}.allowsSelection = NO;`
+  if (tableViewOptions.scrollEnabled) {
+    code += `
+    ${indent}${localVarName}.scrollEnabled = YES;`
+  } else {
+    code += `
+    ${indent}${localVarName}.scrollEnabled = NO;`
+  }
+  // tail code
+  code += genCreateMethodTail(superName, localVarName, propertyName, activeLoad)
+
+  // constraint code
+  code += '\n\n'
+  code += genConstraintCode(widgetType, propertyName, superName, constraintOptions)
+
+  return code
+}
+
+export { genButtonCode, genCustomViewCode, genImageViewCode, genTableViewCode }

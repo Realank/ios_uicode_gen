@@ -10,13 +10,9 @@ const { Header, Footer, Content, Sider } = Layout
 
 const persistedState = {
   selectedView: '',
+  supportedViews: ['UIView', 'UIButton', 'UIImageView', 'UITableView'],
   basicOptions: {
-    // name: '',
     superName: 'view'
-    // backgroundColor: '',
-    // borderWidth: 0,
-    // borderColor: '',
-    // borderRadius: 0
   },
   buttonOptions: {
     title: 'button'
@@ -27,6 +23,9 @@ const persistedState = {
   constraintOptions: {
     selfWidth: 50,
     selfHeight: 30
+  },
+  tableViewOptions: {
+    scrollEnabled: true
   },
   activeLoadCode: true
 }
@@ -44,6 +43,8 @@ const reducer = (state = persistedState, action) => {
       return { ...state, constraintOptions: action.value }
     case 'UpdateImageView':
       return { ...state, imageViewOptions: action.value }
+    case 'UpdateTableView':
+      return { ...state, tableViewOptions: action.value }
     case 'UpdateLoadMethod':
       return { ...state, activeLoadCode: action.value }
     default:

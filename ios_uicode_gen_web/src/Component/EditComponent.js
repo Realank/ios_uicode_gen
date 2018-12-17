@@ -5,6 +5,7 @@ import BasicConfigPart from '../Part/BasicConfigPart'
 import ImageViewConfigPart from '../Part/ImageViewConfigPart'
 import ButtonConfigPart from '../Part/ButtonConfigPart'
 import ConstraintConfigPart from '../Part/ConstraintConfigPart'
+import TableViewConfigPart from '../Part/TableViewConfigPart'
 const Option = Select.Option
 
 class EditComponent extends Component {
@@ -14,6 +15,9 @@ class EditComponent extends Component {
   }
 
   render () {
+    const optionList = this.props.supportedViews.map((option) => {
+      return <Option value={option} key={option} >{option}</Option>
+    })
     console.log('render ' + JSON.stringify(this.props))
     let parts = []
     if (this.props.selectedView && this.props.selectedView.length) {
@@ -23,6 +27,8 @@ class EditComponent extends Component {
       parts.splice(1, 0, <ButtonConfigPart key={'ButtonConfigPart'} />)// 插入
     } else if (this.props.selectedView === 'UIImageView') {
       parts.splice(1, 0, <ImageViewConfigPart key={'ImageViewConfigPart'} />)// 插入
+    } else if (this.props.selectedView === 'UITableView') {
+      parts.splice(1, 0, <TableViewConfigPart key={'TableViewConfigPart'} />)// 插入
     }
     return (
       <div>
@@ -37,9 +43,7 @@ class EditComponent extends Component {
             onChange={this.handleViewChange}
             filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
-            <Option value='UIView'>UIView</Option>
-            <Option value='UIButton'>UIButton</Option>
-            <Option value='UIImageView'>UIImageView</Option>
+            {optionList}
           </Select>
         </Row>
         {parts}
@@ -49,7 +53,7 @@ class EditComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { selectedView: state.selectedView }
+  return { selectedView: state.selectedView, supportedViews: state.supportedViews }
 }
 
 const mapDispatchToProps = {

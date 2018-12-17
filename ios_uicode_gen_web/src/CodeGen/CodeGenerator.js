@@ -90,7 +90,7 @@ function genCreateMethodHeader (widgetType, viewClass, name, activeLoad) {
   if (activeLoad) {
     code += `- (void)create${widgetType} {`
   } else {
-    code += `- (${viewClass} *)${name}() {
+    code += `- (${viewClass} *)${name} {
     if (!_${name}) {`
   }
   return code

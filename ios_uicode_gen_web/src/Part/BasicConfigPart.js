@@ -4,34 +4,16 @@ import { InputNumber, Row, Col, Input } from 'antd'
 import ColorPicker from '../Widget/ColorPicker'
 
 class BasicConfigPart extends Component {
-  handleNameChange = (e) => {
-    console.log('handleNameChange ' + e.target.value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, name: e.target.value })
+  handleInputChange = (id, e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    this.handleChange(id, value)
   }
 
-  handleSuperNameChange = (e) => {
-    console.log('handleSuperNameChange ' + e.target.value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, superName: e.target.value })
-  }
-
-  handleBackgroundColorChange = (value) => {
-    console.log('handleBackgroundColorChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, backgroundColor: value })
-  }
-
-  handleBorderWidthChange = (value) => {
-    console.log('handleBorderWidthChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, borderWidth: value })
-  }
-
-  handleBorderColorChange = (value) => {
-    console.log('handleBorderColorChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, borderColor: value })
-  }
-
-  handleBorderRadiusChange = (value) => {
-    console.log('handleBorderRadiusChange ' + value)
-    this.props.updateBasicOptions({ ...this.props.basicOptions, borderRadius: value })
+  handleChange = (id, value) => {
+    console.log('handleChange ' + id + ' ' + value)
+    let state = { ...this.props.options }
+    state[id] = value
+    this.props.updateOptions(state)
   }
 
   render () {
@@ -44,14 +26,14 @@ class BasicConfigPart extends Component {
             <h5>变量名</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='变量名' onChange={this.handleNameChange} value={this.props.basicOptions.name} />
+            <Input placeholder='变量名' onChange={this.handleInputChange.bind(this, 'name')} value={this.props.options.name} />
           </Col >
           <Col span={1} />
           <Col span={4}>
             <h5>父视图名称</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='变量名' onChange={this.handleSuperNameChange} value={this.props.basicOptions.superName} />
+            <Input placeholder='变量名' onChange={this.handleInputChange.bind(this, 'superName')} value={this.props.options.superName} />
           </Col >
         </Row>
         <Row className={'row'} type='flex' align={'middle'}>
@@ -59,7 +41,7 @@ class BasicConfigPart extends Component {
             <h5>背景颜色</h5>
           </Col>
           <Col span={8}>
-            <ColorPicker initialValue={this.props.basicOptions.backgroundColor} onChange={this.handleBackgroundColorChange} />
+            <ColorPicker initialValue={this.props.options.backgroundColor} onChange={this.handleChange.bind(this, 'backgroundColor')} />
           </Col >
 
         </Row>
@@ -69,14 +51,14 @@ class BasicConfigPart extends Component {
             <h5>边框宽度</h5>
           </Col>
           <Col span={5}>
-            <InputNumber min={0} max={30} precision={1} step={0.5} value={this.props.basicOptions.borderWidth ? this.props.basicOptions.borderWidth : 0} onChange={this.handleBorderWidthChange} />
+            <InputNumber min={0} max={30} precision={1} step={0.5} value={this.props.options.borderWidth ? this.props.options.borderWidth : 0} onChange={this.handleChange.bind(this, 'borderWidth')} />
           </Col >
           <Col span={2} />
           <Col span={4}>
             <h5>边框颜色</h5>
           </Col>
           <Col span={8}>
-            <ColorPicker initialValue={this.props.basicOptions.borderColor} onChange={this.handleBorderColorChange} />
+            <ColorPicker initialValue={this.props.options.borderColor} onChange={this.handleChange.bind(this, 'borderColor')} />
           </Col >
 
         </Row>
@@ -86,7 +68,7 @@ class BasicConfigPart extends Component {
             <h5>圆角半径</h5>
           </Col>
           <Col span={8}>
-            <InputNumber min={0} max={30} value={this.props.basicOptions.borderRadius ? this.props.basicOptions.borderRadius : 0} onChange={this.handleBorderRadiusChange} />
+            <InputNumber min={0} max={30} value={this.props.options.borderRadius ? this.props.options.borderRadius : 0} onChange={this.handleChange.bind(this, 'borderRadius')} />
           </Col >
           <Col span={8} />
 
@@ -98,11 +80,11 @@ class BasicConfigPart extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { basicOptions: state.basicOptions }
+  return { options: state.basicOptions }
 }
 
 const mapDispatchToProps = {
-  updateBasicOptions: (value) => ({
+  updateOptions: (value) => ({
     type: 'UpdateBasic',
     value
   })

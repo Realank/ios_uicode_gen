@@ -3,13 +3,16 @@ import { connect } from 'react-redux'
 import { Row, Col, Input } from 'antd'
 
 class ImageViewConfigPart extends Component {
-  handleImageChange = (e) => {
-    console.log('handleImageChange ' + e.target.value)
-    this.props.updateImageViewOptions({ ...this.props.imageViewOptions, image: e.target.value })
+  handleInputChange = (id, e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    this.handleChange(id, value)
   }
-  handleHighlightedImageChange = (e) => {
-    console.log('handleImageChange ' + e.target.value)
-    this.props.updateImageViewOptions({ ...this.props.imageViewOptions, hightLightedImage: e.target.value })
+
+  handleChange = (id, value) => {
+    console.log('handleChange ' + id + ' ' + value)
+    let state = { ...this.props.options }
+    state[id] = value
+    this.props.updateOptions(state)
   }
 
   render () {
@@ -22,14 +25,14 @@ class ImageViewConfigPart extends Component {
             <h5>前景图片</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='图片名' onChange={this.handleImageChange} value={this.props.imageViewOptions.image} />
+            <Input placeholder='图片名' onChange={this.handleInputChange.bind(this, 'image')} value={this.props.options.image} />
           </Col >
           <Col span={1} />
           <Col span={4}>
             <h5>高亮图片</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='图片名' onChange={this.handleHighlightedImageChange} value={this.props.imageViewOptions.hightLightedImage} />
+            <Input placeholder='图片名' onChange={this.handleInputChange.bind(this, 'hightLightedImage')} value={this.props.options.hightLightedImage} />
           </Col >
         </Row>
 
@@ -39,11 +42,11 @@ class ImageViewConfigPart extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { imageViewOptions: state.imageViewOptions }
+  return { options: state.imageViewOptions }
 }
 
 const mapDispatchToProps = {
-  updateImageViewOptions: (value) => ({
+  updateOptions: (value) => ({
     type: 'UpdateImageView',
     value
   })

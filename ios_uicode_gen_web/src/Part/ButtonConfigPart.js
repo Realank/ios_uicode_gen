@@ -4,23 +4,16 @@ import { Row, Col, Input, Tooltip, Icon } from 'antd'
 import ColorPicker from '../Widget/ColorPicker'
 
 class ButtonConfigPart extends Component {
-  handleTitleChange = (e) => {
-    console.log('handleTitleChange ' + e.target.value)
-    this.props.updateButtonOptions({ ...this.props.buttonOptions, title: e.target.value })
+  handleInputChange = (id, e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    this.handleChange(id, value)
   }
 
-  handleTitleColorChange = (value) => {
-    console.log('handleTitleColorChange ' + value)
-    this.props.updateButtonOptions({ ...this.props.buttonOptions, titleColor: value })
-  }
-
-  handleImageChange = (e) => {
-    console.log('handleImageChange ' + e.target.value)
-    this.props.updateButtonOptions({ ...this.props.buttonOptions, image: e.target.value })
-  }
-  handleBackgroundImageChange = (e) => {
-    console.log('handleImageChange ' + e.target.value)
-    this.props.updateButtonOptions({ ...this.props.buttonOptions, backgroundImage: e.target.value })
+  handleChange = (id, value) => {
+    console.log('handleChange ' + id + ' ' + value)
+    let state = { ...this.props.options }
+    state[id] = value
+    this.props.updateOptions(state)
   }
 
   render () {
@@ -34,14 +27,14 @@ class ButtonConfigPart extends Component {
 
           </Col>
           <Col span={5}>
-            <Input placeholder='标题内容' onChange={this.handleTitleChange} value={this.props.buttonOptions.title} />
+            <Input placeholder='标题内容' onChange={this.handleInputChange.bind(this, 'title')} value={this.props.options.title} />
           </Col >
           <Col span={2} />
           <Col span={4}>
             <h5>标题颜色</h5>
           </Col>
           <Col span={8}>
-            <ColorPicker initialValue={this.props.buttonOptions.titleColor} onChange={this.handleTitleColorChange} />
+            <ColorPicker initialValue={this.props.options.titleColor} onChange={this.handleChange.bind(this, 'titleColor')} />
           </Col >
 
         </Row>
@@ -50,14 +43,14 @@ class ButtonConfigPart extends Component {
             <h5>前景图片</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='图片名' onChange={this.handleImageChange} value={this.props.buttonOptions.image} />
+            <Input placeholder='图片名' onChange={this.handleInputChange.bind(this, 'image')} value={this.props.options.image} />
           </Col >
           <Col span={1} />
           <Col span={4}>
             <h5>背景图片</h5>
           </Col>
           <Col span={6}>
-            <Input placeholder='图片名' onChange={this.handleBackgroundImageChange} value={this.props.buttonOptions.backgroundImage} />
+            <Input placeholder='图片名' onChange={this.handleInputChange.bind(this, 'backgroundImage')} value={this.props.options.backgroundImage} />
           </Col >
         </Row>
 
@@ -67,11 +60,11 @@ class ButtonConfigPart extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { buttonOptions: state.buttonOptions }
+  return { options: state.buttonOptions }
 }
 
 const mapDispatchToProps = {
-  updateButtonOptions: (value) => ({
+  updateOptions: (value) => ({
     type: 'UpdateButton',
     value
   })

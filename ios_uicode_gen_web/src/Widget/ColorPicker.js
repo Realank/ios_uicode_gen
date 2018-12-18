@@ -43,7 +43,6 @@ class ColorPicker extends Component {
 
   render () {
     const { data } = this.state
-    console.log('render color picker ' + JSON.stringify(this.state))
     return (
       <Select
         // mode='multiple'

@@ -25,8 +25,11 @@ class SourceCodeComponent extends Component {
         break
       case 'UIImageView':
         codeString = CodeGen.genImageViewCode(this.props.selectedView, this.props.basicOptions, this.props.imageViewOptions, this.props.constraintOptions, this.props.activeLoadCode)
+        break
       case 'UITableView':
         codeString = CodeGen.genTableViewCode(this.props.selectedView, this.props.basicOptions, this.props.tableViewOptions, this.props.constraintOptions, this.props.activeLoadCode)
+        break
+      default:
         break
     }
 

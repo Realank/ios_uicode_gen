@@ -71,8 +71,8 @@
       <file leaf-file-name="CodeGenerator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CodeGen/CodeGenerator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="285" column="16" selection-start-line="285" selection-start-column="16" selection-end-line="285" selection-end-column="16" />
+            <state relative-caret-position="335">
+              <caret line="286" lean-forward="true" selection-start-line="286" selection-end-line="286" />
             </state>
           </provider>
         </entry>
@@ -350,12 +350,12 @@
       <workItem from="1545012142555" duration="9535000" />
       <workItem from="1545097848071" duration="21077000" />
       <workItem from="1545184901203" duration="1375000" />
-      <workItem from="1545274653354" duration="8638000" />
+      <workItem from="1545274653354" duration="9098000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104183000" />
+    <option name="totallyTimeSpent" value="104643000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
@@ -725,8 +725,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGen/CodeGenerator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="285" column="16" selection-start-line="285" selection-start-column="16" selection-end-line="285" selection-end-column="16" />
+        <state relative-caret-position="335">
+          <caret line="286" lean-forward="true" selection-start-line="286" selection-end-line="286" />
         </state>
       </provider>
     </entry>

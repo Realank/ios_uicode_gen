@@ -284,6 +284,7 @@ function genLabelCode (viewClass, basicOptions, labelOptions, constraintOptions,
   code += genBasicCode(indent, localVarName, basicOptions)
 
   // unique code
+
   code += '\n'
   code +=
     `

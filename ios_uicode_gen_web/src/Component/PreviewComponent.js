@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Tooltip, Icon } from 'antd'
 import UIButton from '../SimulateUI/UIButton'
 import UIView from '../SimulateUI/UIView'
 import UILabel from '../SimulateUI/UILabel'
@@ -19,12 +20,13 @@ class PreviewComponent extends Component {
     }
     return (
       <div className={'preview'}>
-        <h1>预览</h1>
+        <h1 style={{ display: 'inline' }}>预览</h1>
+        <Tooltip title={'只能预览大致效果，请以实际代码效果为准'}> <Icon type='question-circle' /></Tooltip>
         <div className={'renderPreview'}>
           {widget}
-          <div style={{ wordWrap: 'break-word' }}>
-            {JSON.stringify(this.props)}
-          </div>
+          {/* <div style={{ wordWrap: 'break-word' }}> */}
+          {/* {JSON.stringify(this.props)} */}
+          {/* </div> */}
         </div>
       </div>
     )

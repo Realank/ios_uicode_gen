@@ -23,7 +23,7 @@ class UIButton extends Component {
     }
 
     return (
-      <div className={'UIButton'} style={style}>Button</div>
+      <div className={'UIButton'} style={style}>{buttonOptions.title ? buttonOptions.title : 'Button'}</div>
     )
   }
 }

@@ -129,7 +129,7 @@ function genCustomViewCode (viewClass, basicOptions, constraintOptions, activeLo
   let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
 
   code += `
-    ${indent}UIView *${localVarName} = [[UIView alloc] initWithFrame:CGRectZero];`
+    ${indent}UIView *${localVarName} = [[UIView alloc] init];`
 
   // basic code
   code += genBasicCode(indent, localVarName, basicOptions)
@@ -268,4 +268,55 @@ function genTableViewCode (viewClass, basicOptions, tableViewOptions, constraint
   return code
 }
 
-export { genButtonCode, genCustomViewCode, genImageViewCode, genTableViewCode }
+function genLabelCode (viewClass, basicOptions, labelOptions, constraintOptions, activeLoad) {
+  // method body and init method
+  const localVarName = 'label'
+  const widgetType = 'Label'
+  const propertyName = validString(basicOptions.name) ? basicOptions.name : viewClass.toLowerCase()
+  const superName = validString(basicOptions.superName) ? basicOptions.superName : 'view'
+  let indent = activeLoad ? '' : '    '
+  let code = genCreateMethodHeader(widgetType, viewClass, propertyName, activeLoad)
+
+  code += `
+    ${indent}UILabel *${localVarName} = [[UILabel alloc] init];`
+
+  // basic code
+  code += genBasicCode(indent, localVarName, basicOptions)
+
+  // unique code
+
+  code += '\n'
+  code +=
+    `
+    ${indent}${localVarName}.text = @"${labelOptions.text}";`
+  if (validString(labelOptions.textColor)) {
+    code +=
+      `
+    ${indent}${localVarName}.textColor = UIColorFromRGB(${convertColor(labelOptions.textColor)});`
+  }
+  if (labelOptions.fontSize) {
+    code +=
+      `
+    ${indent}${localVarName}.fontSize = UCAR_FONT_SIZE(${labelOptions.fontSize});`
+  }
+  if (labelOptions.numberOfLines !== undefined) {
+    code +=
+      `
+    ${indent}${localVarName}.numberOfLines = ${labelOptions.numberOfLines};`
+  }
+  if (validString(labelOptions.textAlign)) {
+    code +=
+      `
+    ${indent}${localVarName}.textAlignment = ${labelOptions.textAlign};`
+  }
+  // tail code
+  code += genCreateMethodTail(superName, localVarName, propertyName, activeLoad)
+
+  // constraint code
+  code += '\n\n'
+  code += genConstraintCode(widgetType, propertyName, superName, constraintOptions)
+
+  return code
+}
+
+export { genButtonCode, genCustomViewCode, genImageViewCode, genTableViewCode, genLabelCode }

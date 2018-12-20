@@ -6,6 +6,7 @@ import ImageViewConfigPart from '../Part/ImageViewConfigPart'
 import ButtonConfigPart from '../Part/ButtonConfigPart'
 import ConstraintConfigPart from '../Part/ConstraintConfigPart'
 import TableViewConfigPart from '../Part/TableViewConfigPart'
+import LabelConfigPart from '../Part/LabelConfigPart'
 const Option = Select.Option
 
 class EditComponent extends Component {
@@ -29,6 +30,8 @@ class EditComponent extends Component {
       parts.splice(1, 0, <ImageViewConfigPart key={'ImageViewConfigPart'} />)// 插入
     } else if (this.props.selectedView === 'UITableView') {
       parts.splice(1, 0, <TableViewConfigPart key={'TableViewConfigPart'} />)// 插入
+    } else if (this.props.selectedView === 'UILabel') {
+      parts.splice(1, 0, <LabelConfigPart key={'LabelConfigPart'} />)// 插入
     }
     return (
       <div>

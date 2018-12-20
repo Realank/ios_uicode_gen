@@ -29,6 +29,9 @@ class SourceCodeComponent extends Component {
       case 'UITableView':
         codeString = CodeGen.genTableViewCode(this.props.selectedView, this.props.basicOptions, this.props.tableViewOptions, this.props.constraintOptions, this.props.activeLoadCode)
         break
+      case 'UILabel':
+        codeString = CodeGen.genLabelCode(this.props.selectedView, this.props.basicOptions, this.props.labelOptions, this.props.constraintOptions, this.props.activeLoadCode)
+        break
       default:
         break
     }

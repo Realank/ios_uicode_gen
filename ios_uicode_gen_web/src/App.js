@@ -10,7 +10,7 @@ const { Header, Footer, Content, Sider } = Layout
 
 const persistedState = {
   selectedView: '',
-  supportedViews: ['UIView', 'UIButton', 'UIImageView', 'UITableView'],
+  supportedViews: ['UIView', 'UIButton', 'UIImageView', 'UITableView', 'UILabel'],
   basicOptions: {
     superName: 'view'
   },
@@ -26,6 +26,10 @@ const persistedState = {
   },
   tableViewOptions: {
     scrollEnabled: true
+  },
+  labelOptions: {
+    text: 'Label',
+    fontSize: 17
   },
   activeLoadCode: true
 }
@@ -45,6 +49,8 @@ const reducer = (state = persistedState, action) => {
       return { ...state, imageViewOptions: action.value }
     case 'UpdateTableView':
       return { ...state, tableViewOptions: action.value }
+    case 'UpdateLabel':
+      return { ...state, labelOptions: action.value }
     case 'UpdateLoadMethod':
       return { ...state, activeLoadCode: action.value }
     default:

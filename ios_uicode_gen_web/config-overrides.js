@@ -1,10 +1,9 @@
-const { injectBabelPlugin } = require('react-app-rewired')
+const { override, fixBabelImports } = require('customize-cra')
 
-module.exports = function override (config, env) {
-  console.log('injectBabelPlugin')
-  config = injectBabelPlugin(
-    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }],
-    config
-  )
-  return config
-}
+module.exports = override(
+  fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: 'css'
+  })
+)

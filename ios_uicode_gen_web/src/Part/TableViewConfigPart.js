@@ -15,7 +15,7 @@ class TableViewConfigPart extends Component {
     return (
 
       <div className={'config'}>
-        <h3 >UIImageView配置</h3>
+        <h3 >UITableView配置</h3>
         <Row className={'row'} type='flex' align={'middle'}>
           <Col span={4}>
             <h5>可以滚动</h5>

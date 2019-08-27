@@ -297,7 +297,7 @@ function genLabelCode (viewClass, basicOptions, labelOptions, constraintOptions,
   if (labelOptions.fontSize) {
     code +=
       `
-    ${indent}${localVarName}.fontSize = UCAR_FONT_SIZE(${labelOptions.fontSize});`
+    ${indent}${localVarName}.font = UCAR_FONT_SIZE(${labelOptions.fontSize});`
   }
   if (labelOptions.numberOfLines !== undefined) {
     code +=
